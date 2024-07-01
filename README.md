@@ -25,8 +25,10 @@ Team Mates:
 
 ***Questions:***
 
-1. What is the link of the fork OSProject in your repository. ***(1 mark)*** __Fill answer here__.
-2. How many files and folders are in this repository. ***(1 mark)*** __There is 1 folder called the images folder, where it contains all the images that was used in this README.md file. Other than that, there is also 1 file called the README.md file. This file contains the instructions and description of this OSProject.__.
+1. What is the link of the fork OSProject in your repository. ***(1 mark)***
+   __https://github.com/AimanZaharin/OSProject/tree/main__
+3. How many files and folders are in this repository. ***(1 mark)***
+   __There is 1 folder called the images folder, where it contains all the images that was used in this README.md file. Other than that, there is also 1 file called the README.md file. This file contains the instructions and description of this OSProject.__
 
 
 ## Exploring github codespaces
