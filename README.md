@@ -391,6 +391,20 @@ __The top running process that consumes the most CPU cycles is node with a proce
 docker pull debian
 docker run --detach -it debian
 ```
+
+Mine:
+```bash
+@AimanZaharin ➜ /workspaces/OSProject (main) $ docker pull debian
+Using default tag: latest
+latest: Pulling from library/debian
+fea1432adf09: Pull complete 
+Digest: sha256:a92ed51e0996d8e9de041ca05ce623d2c491444df6a535a566dabd5cb8336946
+Status: Downloaded newer image for debian:latest
+docker.io/library/debian:latest
+@AimanZaharin ➜ /workspaces/OSProject (main) $ docker run --detach -it debian
+f8a572db9318f19bc8229a31c3a9cce1f71300a499b410a2d2e76e0a6f413268
+```
+
 2. This will run the debian container. To check if the debian container is running, type
 ```bash
 @joeynor ➜ /workspaces/OSProject (main) $ docker ps -a
@@ -398,9 +412,20 @@ CONTAINER ID   IMAGE     COMMAND   CREATED         STATUS         PORTS     NAME
 f65be1987f84   debian    "bash"    4 minutes ago   Up 4 minutes             romantic_jackson
 ```
 
+Mine:
+```bash
+@AimanZaharin ➜ /workspaces/OSProject (main) $ docker ps -a
+CONTAINER ID   IMAGE     COMMAND   CREATED          STATUS          PORTS     NAMES
+f8a572db9318   debian    "bash"    17 seconds ago   Up 14 seconds             funny_jones
+```
+
 3. Keep note of the name used by your container, this is usually given random names unless you specify your own name. Now run a bash command on the container. Make sure you use the name of your container instead of the one shown here. 
 ```bash
 docker exec -i -t romantic_jackson /bin/bash
+```
+Mine:
+```bash
+@AimanZaharin ➜ /workspaces/OSProject (main) $ docker exec -i -t funny_jones /bin/bash
 ```
 
 4. Create a file on the container. First you must make sure you are in the bash command prompt of the container. The container is new, and does not have any software other than the debian OS. To create a new file, you will need an editor installed. In the bash shell of the container, run the package manager apt-get to install nano text editor. 
@@ -415,7 +440,62 @@ root@f65be1987f84:~# cd /root
 root@f65be1987f84:~# nano helloworld.txt
 ```
 
+Mine:
+```bash
+root@f8a572db9318:/# apt-get update
+Get:1 http://deb.debian.org/debian bookworm InRelease [151 kB]
+Get:2 http://deb.debian.org/debian bookworm-updates InRelease [55.4 kB]
+Get:3 http://deb.debian.org/debian-security bookworm-security InRelease [48.0 kB]
+Get:4 http://deb.debian.org/debian bookworm/main amd64 Packages [8788 kB]
+Get:5 http://deb.debian.org/debian bookworm-updates/main amd64 Packages [13.8 kB]
+Get:6 http://deb.debian.org/debian-security bookworm-security/main amd64 Packages [164 kB]
+Fetched 9220 kB in 1s (8658 kB/s)                         
+Reading package lists... Done
+
+root@f8a572db9318:/# apt-get install nano
+Reading package lists... Done
+Building dependency tree... Done
+Reading state information... Done
+The following additional packages will be installed:
+  libgpm2 libncursesw6
+Suggested packages:
+  gpm hunspell
+The following NEW packages will be installed:
+  libgpm2 libncursesw6 nano
+0 upgraded, 3 newly installed, 0 to remove and 6 not upgraded.
+Need to get 838 kB of archives.
+After this operation, 3339 kB of additional disk space will be used.
+Do you want to continue? [Y/n] Y
+Get:1 http://deb.debian.org/debian bookworm/main amd64 libncursesw6 amd64 6.4-4 [134 kB]
+Get:2 http://deb.debian.org/debian bookworm/main amd64 nano amd64 7.2-1+deb12u1 [690 kB]
+Get:3 http://deb.debian.org/debian bookworm/main amd64 libgpm2 amd64 1.20.7-10+b1 [14.2 kB]
+Fetched 838 kB in 0s (24.8 MB/s)
+debconf: delaying package configuration, since apt-utils is not installed
+Selecting previously unselected package libncursesw6:amd64.
+(Reading database ... 6090 files and directories currently installed.)
+Preparing to unpack .../libncursesw6_6.4-4_amd64.deb ...
+Unpacking libncursesw6:amd64 (6.4-4) ...
+Selecting previously unselected package nano.
+Preparing to unpack .../nano_7.2-1+deb12u1_amd64.deb ...
+Unpacking nano (7.2-1+deb12u1) ...
+Selecting previously unselected package libgpm2:amd64.
+Preparing to unpack .../libgpm2_1.20.7-10+b1_amd64.deb ...
+Unpacking libgpm2:amd64 (1.20.7-10+b1) ...
+Setting up libgpm2:amd64 (1.20.7-10+b1) ...
+Setting up libncursesw6:amd64 (6.4-4) ...
+Setting up nano (7.2-1+deb12u1) ...
+update-alternatives: using /bin/nano to provide /usr/bin/editor (editor) in auto mode
+update-alternatives: using /bin/nano to provide /usr/bin/pico (pico) in auto mode
+Processing triggers for libc-bin (2.36-9+deb12u7) ...
+
+root@f8a572db9318:/# cd /root
+
+root@f8a572db9318:~# nano helloworld.txt
+```
+
 5. Edit your helloworld.txt, create your messsage and save by typing ctrl-X. Once saved, explore using the container to see where the file is located. Then exit the shell, by typing **exit**.
+
+Image: video of editing first time
 
 6. Stop the container and run **docker ps -a**, and restart the container again. Is your file in the container still available?
 ```bash 
@@ -428,6 +508,21 @@ f65be1987f84   debian    "bash"    19 minutes ago   Exited (137) 18 seconds ago 
 @joeynor ➜ /workspaces/OSProject (main) $ docker restart romantic_jackson
 ```
 
+Mine:
+```bash
+@AimanZaharin ➜ /workspaces/OSProject (main) $ docker stop funny_jones
+funny_jones
+@AimanZaharin ➜ /workspaces/OSProject (main) $ docker ps -a
+CONTAINER ID   IMAGE     COMMAND   CREATED          STATUS                        PORTS     NAMES
+f8a572db9318   debian    "bash"    17 minutes ago   Exited (137) 33 seconds ago             funny_jones
+@AimanZaharin ➜ /workspaces/OSProject (main) $ docker restart funny_jones
+funny_jones
+@AimanZaharin ➜ /workspaces/OSProject (main) $ docker exec -i -t funny_jones /bin/bash
+root@f8a572db9318:/# nano helloworld.txt
+root@f8a572db9318:/# exit
+```
+Image: screenshot checking the txt file
+
 7. Stop the container and delete the container. What happened to your helloworld.txt?
 
 ```bash 
@@ -439,6 +534,19 @@ f65be1987f84   debian    "bash"    19 minutes ago   Exited (137) 18 seconds ago 
 
 @joeynor ➜ /workspaces/OSProject (main) $ docker rm romantic_jackson
 ```
+
+Mine:
+```bash
+@AimanZaharin ➜ /workspaces/OSProject (main) $ docker stop funny_jones
+funny_jones
+@AimanZaharin ➜ /workspaces/OSProject (main) $ docker ps -a
+CONTAINER ID   IMAGE     COMMAND   CREATED          STATUS                       PORTS     NAMES
+f8a572db9318   debian    "bash"    23 minutes ago   Exited (137) 3 seconds ago             funny_jones
+@AimanZaharin ➜ /workspaces/OSProject (main) $ docker rm funny_jones
+funny_jones
+```
+
+Answer: After stopping and deleting the Docker funny_jones container, the helloworld.txt file or other data created or modified inside that container will no longer be accessible.
 
 ***Questions:***
 
