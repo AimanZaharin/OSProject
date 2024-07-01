@@ -813,7 +813,7 @@ Bluenet (docker inspect c1):
 ...
 "NetworkSettings": {
 "bluenet": {
-"IPAdress": "172.18.0.2"
+"IPAddress": "172.18.0.2"
 }}
 ...
 ```
@@ -828,7 +828,7 @@ Rednet (docker inspect c2):
 ...
 "NetworkSettings": {
 "rednet": {
-"IPAdress": "172.19.0.2"
+"IPAddress": "172.19.0.2"
 }}
 ...
 ```
