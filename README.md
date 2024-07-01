@@ -495,8 +495,8 @@ root@f8a572db9318:~# nano helloworld.txt
 
 5. Edit your helloworld.txt, create your messsage and save by typing ctrl-X. Once saved, explore using the container to see where the file is located. Then exit the shell, by typing **exit**.
 
-Image:
- <img src="./images/EditingTheTxtFile.png" width="50%">
+Image: <br>
+ <img src="./images/EditingTheTxtFile.png">
 
 6. Stop the container and run **docker ps -a**, and restart the container again. Is your file in the container still available?
 ```bash 
@@ -522,10 +522,10 @@ funny_jones
 root@f8a572db9318:/# nano helloworld.txt
 root@f8a572db9318:/# exit
 ```
-Image:
- <img src="./images/CheckingTheTxtFile.png" width="50%">
+Image: <br>
+ <img src="./images/CheckingTheTxtFile.png">
 
-Explanation:
+Explanation: <br>
 The text that I have written earlier is still in the nano helloworld.txt file
 
 7. Stop the container and delete the container. What happened to your helloworld.txt?
