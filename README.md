@@ -329,8 +329,38 @@ cache_alignment : 64
 address sizes   : 48 bits physical, 48 bits virtual
 power management:
 ```
-9. Run the command **top** and type **q** to quit. ***(1 mark)*** __Fill answer here__.
-10. Run the command **uname -a**. ***(1 mark)*** __Fill answer here__.
+9. Run the command **top** and type **q** to quit. ***(1 mark)*** 
+```bash
+top - 02:27:53 up  1:04,  0 users,  load average: 0.21, 0.15, 0.17
+Tasks:  18 total,   1 running,  17 sleeping,   0 stopped,   0 zombie
+%Cpu(s):  4.4 us,  4.5 sy,  0.0 ni, 90.9 id,  0.2 wa,  0.0 hi,  0.0 si,  0.0 st
+MiB Mem :   7929.6 total,    237.1 free,   1516.7 used,   6175.8 buff/cache
+MiB Swap:      0.0 total,      0.0 free,      0.0 used.   6030.3 avail Mem 
+
+    PID USER      PR  NI    VIRT    RES    SHR S  %CPU  %MEM     TIME+ COMMAND                                                                                              
+   2131 codespa+  20   0   21.5g 335112  49920 S   1.0   4.1   0:58.17 node                                                                                                 
+   2106 codespa+  20   0 1334188 110212  45440 S   0.3   1.4   0:07.48 node                                                                                                 
+      1 codespa+  20   0    1136    640    640 S   0.0   0.0   0:00.08 docker-init                                                                                          
+      7 codespa+  20   0    7236   1664   1664 S   0.0   0.0   0:00.01 sleep                                                                                                
+     88 root      20   0   12196   3480   2560 S   0.0   0.0   0:00.00 sshd                                                                                                 
+    786 root      20   0 1983176  83388  52992 S   0.0   1.0   0:00.44 dockerd                                                                                              
+    794 root      20   0 1798576  44132  30464 S   0.0   0.5   0:00.30 containerd                                                                                           
+   1496 codespa+  20   0    2616   1536   1536 S   0.0   0.0   0:00.00 sh                                                                                                   
+   1518 root      20   0    2616   1536   1536 S   0.0   0.0   0:00.00 sh                                                                                                   
+   2097 codespa+  20   0    2624   1664   1664 S   0.0   0.0   0:00.00 sh                                                                                                   
+   2144 codespa+  20   0 1240308  54496  41344 S   0.0   0.7   0:00.45 node                                                                                                 
+   2610 codespa+  20   0 1182136  61724  42112 S   0.0   0.8   0:02.48 node                                                                                                 
+   3158 codespa+  20   0 1013724  72908  40704 S   0.0   0.9   0:03.86 node                                                                                                 
+   3630 codespa+  20   0    2616   1536   1536 S   0.0   0.0   0:00.00 sh                                                                                                   
+   3674 root      20   0    2616   1664   1664 S   0.0   0.0   0:00.00 sh   
+```
+
+10. Run the command **uname -a**. ***(1 mark)*** 
+```bash
+@AimanZaharin ➜ /workspaces/OSProject (main) $ uname -a
+Linux codespaces-705579 6.5.0-1022-azure #23~22.04.1-Ubuntu SMP Thu May  9 17:59:24 UTC 2024 x86_64 x86_64 x86_64 GNU/Linux
+```
+
 11. What is the available free memory in the system. ***(1 mark)*** __Fill answer here__.
 12. What is the available disk space mounted on /workspace. ***(1 mark)*** __Fill answer here__.
 13. Name the version and hardware architecture of the linux Virtual environment. ***(1 mark)*** __Fill answer here__.
