@@ -578,24 +578,84 @@ At the terminal, create a new directory called **myroot**, and run a instance of
 
 ***Questions:***
 
-1. Check the permission of the files created in myroot, what user and group is the files created in docker container on the host virtual machine? . ***(2 mark)*** __Fill answer here__.
+1. Check the permission of the files created in myroot, what user and group is the files created in docker container on the host virtual machine? . ***(2 mark)*** 
+```bash
+@AimanZaharin ➜ /workspaces/OSProject (main) $ mkdir myroot
+@AimanZaharin ➜ /workspaces/OSProject (main) $ cd myroot/
+@AimanZaharin ➜ /workspaces/OSProject/myroot (main) $ pwd
+/workspaces/OSProject/myroot
+@AimanZaharin ➜ /workspaces/OSProject/myroot (main) $ docker run --detach -it -v /workspaces/OSProject/myroot:/root debian
+7b028fddd9a7ad35ce42fd0fe38acbef373620ad159e284a4fdc6c284923399b
+@AimanZaharin ➜ /workspaces/OSProject/myroot (main) $ ll
+total 8
+drwxrwxrwx+ 2 codespace codespace 4096 Jul  1 04:56 ./
+drwxrwxrwx+ 5 codespace root      4096 Jul  1 04:56 ../
+```
+
+<br>
+User: codespace <br>
+Group: root
+
 2. Can you change the permission of the files to user codespace.  You will need this to be able to commit and get points for this question. ***(2 mark)***
 ```bash
 //use sudo and chown
 sudo chown -R codespace:codespace myroot
 
 ```
-*** __Fill answer here__.***
+
+```bash
+@AimanZaharin ➜ /workspaces/OSProject (main) $ sudo chown -R codespace:codespace myroot
+@AimanZaharin ➜ /workspaces/OSProject (main) $ ll
+total 56
+drwxrwxrwx+ 5 codespace root       4096 Jul  1 04:56 ./
+drwxr-xrwx+ 5 codespace root       4096 Jul  1 01:33 ../
+drwxrwxrwx+ 9 codespace root       4096 Jul  1 04:14 .git/
+-rw-rw-rw-  1 codespace root      36646 Jul  1 05:01 README.md
+drwxrwxrwx+ 2 codespace root       4096 Jul  1 03:29 images/
+drwxrwxrwx+ 2 codespace codespace  4096 Jul  1 04:56 myroot/
+```
 
 ## You are on your own, create your own static webpage
 
 1. Create a directory called webpage in your host machine
+```bash
+@AimanZaharin ➜ /workspaces/OSProject (main) $ mkdir /workspaces/OSProject/webpage
+```
+
 2. Inside the directory, create a page index.html, with any content you would like
+```bash
+@AimanZaharin ➜ /workspaces/OSProject (main) $ nano /workspaces/OSProject/webpage/index.html
+
+
+Use "fg" to return to nano.
+
+[1]+  Stopped                 nano /workspaces/OSProject/webpage/index.html
+```
+
+Image: <br>
+ <img src="./images/EditingHTMLfile.png" width="70%">
+
 3. Then, run the apache webserver and mount the webpage directory to it. Hint:
 ```bash
 ## the -p 8080:80 flag points the host port 8080 to the container port 80
 
 docker run --detach -v /workspaces/OSProject/webpage:/usr/local/apache2/htdocs/ -p 8080:80 httpd
+
+```
+
+```bash
+@AimanZaharin ➜ /workspaces/OSProject (main) $ docker run --detach -v /workspaces/OSProject/webpage:/usr/local/apache2/htdocs/ -p 8080:80 httpd
+Unable to find image 'httpd:latest' locally
+latest: Pulling from library/httpd
+2cc3ae149d28: Pull complete 
+840d8df643b2: Pull complete 
+4f4fb700ef54: Pull complete 
+9d1465828338: Pull complete 
+4a16a983b278: Pull complete 
+9129890c4c50: Pull complete 
+Digest: sha256:10182d88d7fbc5161ae0f6f758cba7adc56d4aae2dc950e51d72c0cf68967cea
+Status: Downloaded newer image for httpd:latest
+541d2cafad2a33d9f11e7b383b615d34bd1bc1963605a27025e1bccf2208bb19
 ```
 
 4. If it works, codespace will trigger a port assignment and provide a URL for you to access your webpage like the one below.
@@ -605,9 +665,16 @@ docker run --detach -v /workspaces/OSProject/webpage:/usr/local/apache2/htdocs/ 
 
 5. You can also see the Port in the **PORTS** tab, next to the terminal tab.
 
+Image: <br>
+ <img src="./images/PortsTab.png" width="70%">
+
 6. You can then access your website by adding an index.html towards the end of your url link, like the one below. 
 
  <img src="./images/helloworldweb.png" width="70%">
+
+Image: <br>
+ <img src="./images/HTMLfile.png" width="70%">
+
 
 ***Questions:***
 
