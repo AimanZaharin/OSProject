@@ -580,21 +580,32 @@ At the terminal, create a new directory called **myroot**, and run a instance of
 
 1. Check the permission of the files created in myroot, what user and group is the files created in docker container on the host virtual machine? . ***(2 mark)*** 
 ```bash
-@AimanZaharin ➜ /workspaces/OSProject (main) $ mkdir myroot
-@AimanZaharin ➜ /workspaces/OSProject (main) $ cd myroot/
-@AimanZaharin ➜ /workspaces/OSProject/myroot (main) $ pwd
+@Alanilla ➜ /workspaces/OSProject (main) $ mkdir myroot
+@Alanilla ➜ /workspaces/OSProject (main) $ cd myroot/
+@Alanilla ➜ /workspaces/OSProject/myroot (main) $ pwd
 /workspaces/OSProject/myroot
-@AimanZaharin ➜ /workspaces/OSProject/myroot (main) $ docker run --detach -it -v /workspaces/OSProject/myroot:/root debian
-7b028fddd9a7ad35ce42fd0fe38acbef373620ad159e284a4fdc6c284923399b
-@AimanZaharin ➜ /workspaces/OSProject/myroot (main) $ ll
-total 8
-drwxrwxrwx+ 2 codespace codespace 4096 Jul  1 04:56 ./
-drwxrwxrwx+ 5 codespace root      4096 Jul  1 04:56 ../
+@Alanilla ➜ /workspaces/OSProject/myroot (main) $ cd ..
+@Alanilla ➜ /workspaces/OSProject (main) $ docker run --detach -it -v /workspaces/OSProject/myroot:/root debian
+Unable to find image 'debian:latest' locally
+latest: Pulling from library/debian
+fea1432adf09: Pull complete 
+Digest: sha256:a92ed51e0996d8e9de041ca05ce623d2c491444df6a535a566dabd5cb8336946
+Status: Downloaded newer image for debian:latest
+8f7830bf46cbd9c54b022b92b0859a82f42f0897394ddb6d8d50696c4ab58fec
+@Alanilla ➜ /workspaces/OSProject (main) $ docker run --detach -it -v /workspaces/OSProject/myroot:/root debian
+b3a781f894a3692c208894bdb4a566f1139fffcaf178540761c3d2f21e82ad7e
+@Alanilla ➜ /workspaces/OSProject (main) $ docker run -it --name mydebian -v ~/myroot:/root debian /bin/bash
+root@62db4fb4d9f4:/# touch /root/testfile
+root@62db4fb4d9f4:/# exit
+exit
+@Alanilla ➜ /workspaces/OSProject (main) $ ls -l ~/myroot
+total 0
+-rw-r--r-- 1 root root 0 Jul  1 05:30 testfile
 ```
 
-<br>
-User: codespace <br>
-Group: root
+Initial: <br>
+User - root <br>
+Group - root <br>
 
 2. Can you change the permission of the files to user codespace.  You will need this to be able to commit and get points for this question. ***(2 mark)***
 ```bash
@@ -604,16 +615,15 @@ sudo chown -R codespace:codespace myroot
 ```
 
 ```bash
-@AimanZaharin ➜ /workspaces/OSProject (main) $ sudo chown -R codespace:codespace myroot
-@AimanZaharin ➜ /workspaces/OSProject (main) $ ll
-total 56
-drwxrwxrwx+ 5 codespace root       4096 Jul  1 04:56 ./
-drwxr-xrwx+ 5 codespace root       4096 Jul  1 01:33 ../
-drwxrwxrwx+ 9 codespace root       4096 Jul  1 04:14 .git/
--rw-rw-rw-  1 codespace root      36646 Jul  1 05:01 README.md
-drwxrwxrwx+ 2 codespace root       4096 Jul  1 03:29 images/
-drwxrwxrwx+ 2 codespace codespace  4096 Jul  1 04:56 myroot/
+@Alanilla ➜ /workspaces/OSProject (main) $ sudo chown -R codespace:codespace ~/myroot
+@Alanilla ➜ /workspaces/OSProject (main) $ ls -l ~/myroot
+total 0
+-rw-r--r-- 1 codespace codespace 0 Jul  1 05:30 testfile
 ```
+
+Afer changing: <br>
+User - codespace <br>
+Group - codespace <br>
 
 ## You are on your own, create your own static webpage
 
@@ -632,7 +642,7 @@ Use "fg" to return to nano.
 [1]+  Stopped                 nano /workspaces/OSProject/webpage/index.html
 ```
 
-Image: <br>
+Editing the HTML file and put some sentences in it: <br>
  <img src="./images/EditingHTMLfile.png">
 
 3. Then, run the apache webserver and mount the webpage directory to it. Hint:
@@ -643,6 +653,7 @@ docker run --detach -v /workspaces/OSProject/webpage:/usr/local/apache2/htdocs/ 
 
 ```
 
+Mine: <br>
 ```bash
 @AimanZaharin ➜ /workspaces/OSProject (main) $ docker run --detach -v /workspaces/OSProject/webpage:/usr/local/apache2/htdocs/ -p 8080:80 httpd
 Unable to find image 'httpd:latest' locally
@@ -665,22 +676,47 @@ Status: Downloaded newer image for httpd:latest
 
 5. You can also see the Port in the **PORTS** tab, next to the terminal tab.
 
-Image: <br>
+The Ports Tab next to my terminal tab: <br>
  <img src="./images/PortsTab.png">
 
 6. You can then access your website by adding an index.html towards the end of your url link, like the one below. 
 
  <img src="./images/helloworldweb.png" width="70%">
 
-Image: <br>
+The HTML file that has been edited earlier: <br>
  <img src="./images/HTMLfile.png">
 
 
 ***Questions:***
 
-1. What is the permission of folder /usr/local/apache/htdocs and what user and group owns the folder? . ***(2 mark)*** __Fill answer here__.
-2. What port is the apache web server running. ***(1 mark)*** __Fill answer here__.
+1. What is the permission of folder /usr/local/apache/htdocs and what user and group owns the folder? . ***(2 mark)*** 
+```bash
+@AimanZaharin ➜ /workspaces/OSProject (main) $ docker exec elated_shaw ls -ld /usr/local/apache2/htdocs
+drwxrwxrwx+ 2 1000 1000 4096 Jul  1 05:15 /usr/local/apache2/htdocs
+```
+
+Explanation: <br>
+This means that the directory /usr/local/apache2/htdocs is writable and accessible to all users (rwx for owner, group, and others), and the owner and group are both identified as 1000.
+
+2. What port is the apache web server running. ***(1 mark)*** 
+```bash
+@AimanZaharin ➜ /workspaces/OSProject (main) $ docker ps -a
+CONTAINER ID   IMAGE     COMMAND              CREATED          STATUS          PORTS                                   NAMES
+541d2cafad2a   httpd     "httpd-foreground"   16 minutes ago   Up 16 minutes   0.0.0.0:8080->80/tcp, :::8080->80/tcp   elated_shaw
+7b028fddd9a7   debian    "bash"               36 minutes ago   Up 36 minutes                                           jolly_cartwright
+```
+Explanation: <br>
+Under the PORTS column, 0.0.0.0:8080->80/tcp, :::8080->80/tcp indicates that port 8080 on the host is mapped to port 80 inside the container.
+
 3. What port is open for http protocol on the host machine? ***(1 mark)*** __Fill answer here__.
+```bash
+@AimanZaharin ➜ /workspaces/OSProject (main) $ docker port elated_shaw 80
+0.0.0.0:8080
+[::]:8080
+```
+
+Explanation: <br>
+This means that port 8080 on the host is open and mapped to port 80 inside the Apache container.
 
 ## Create SUB Networks
 
@@ -697,13 +733,113 @@ docker network create rednet`
 docker run -itd --net bluenet --name c1 busybox sh
 docker run -itd --net rednet --name c2 busybox sh
 ```
+
+```bash
+@AimanZaharin ➜ /workspaces/OSProject (main) $ docker network create bluenet
+d311d72ba6ba27c6ebb4558624f52b1d9bec3c1d88012e2315e94ad2ab9f348a
+@AimanZaharin ➜ /workspaces/OSProject (main) $ docker network create rednet
+acd83c9ddfb2e83dd76a4ff7de25c6315e54eab3732843e2275a2e008610de83
+@AimanZaharin ➜ /workspaces/OSProject (main) $ docker run -itd --net bluenet --name c1 busybox sh
+Unable to find image 'busybox:latest' locally
+latest: Pulling from library/busybox
+ec562eabd705: Pull complete 
+Digest: sha256:9ae97d36d26566ff84e8893c64a6dc4fe8ca6d1144bf5b87b2b85a32def253c7
+Status: Downloaded newer image for busybox:latest
+f9aa33b006d73621baf78e45a1d3aea6e6cc782f5c6b2c32f268c965f56ed2ee
+@AimanZaharin ➜ /workspaces/OSProject (main) $ docker run -itd --net rednet --name c2 busybox sh
+802d6bd7f24f73448cfac6f2accc155c6d4e9a223f63a695bda436cfe5e977da
+```
+
 ***Questions:***
 
-1. Describe what is busybox and what is command switch **--name** is for? . ***(2 mark)*** __Fill answer here__.
-2. Explore the network using the command ```docker network ls```, show the output of your terminal. ***(1 mark)*** __Fill answer here__.
-3. Using ```docker inspect c1``` and ```docker inspect c2``` inscpect the two network. What is the gateway of bluenet and rednet.? ***(1 mark)*** __Fill answer here__.
-4. What is the network address for the running container c1 and c2? ***(1 mark)*** __Fill answer here__.
-5. Using the command ```docker exec c1 ping c2```, which basically tries to do a ping from container c1 to c2. Are you able to ping? Show your output . ***(1 mark)*** __Fill answer here__.
+1. Describe what is busybox and what is command switch **--name** is for? . ***(2 mark)*** <br>
+Busybox: <br>
+Busybox is a software suite that combines many Unix utilities into one executable file. It's popular in embedded Linux systems because it's small and simple. In Docker, it's often used for lightweight containers performing simple tasks.
+<br>
+Command switch --name: <br>
+The --name switch in Docker assigns a specific name to a container, making it easier to reference the container later instead of using the automatically generated ID.
+<br>
+
+2. Explore the network using the command ```docker network ls```, show the output of your terminal. ***(1 mark)***
+```bash
+@AimanZaharin ➜ /workspaces/OSProject (main) $ docker network ls
+NETWORK ID     NAME      DRIVER    SCOPE
+d311d72ba6ba   bluenet   bridge    local
+19464bab461d   bridge    bridge    local
+d1ce39513b20   host      host      local
+801b211c29cc   none      null      local
+acd83c9ddfb2   rednet    bridge    local
+```
+
+3. Using ```docker inspect c1``` and ```docker inspect c2``` inscpect the two network. What is the gateway of bluenet and rednet.? ***(1 mark)*** 
+
+<br>
+Bluenet (docker inspect c1):
+
+```bash
+@AimanZaharin ➜ /workspaces/OSProject/webpage (main) $ docker inspect c1
+...
+"NetworkSettings": {
+"bluenet": {
+"Gateway": "172.18.0.1"
+}}
+...
+```
+
+Gateway for bluenet: 172.18.0.1
+
+<br>
+Rednet (docker inspect c2):
+
+```bash
+@Alanilla ➜ /workspaces/OSProject/webpage (main) $ docker inspect c2
+...
+"NetworkSettings": {
+"rednet": {
+"Gateway": "172.19.0.1"
+}}
+...
+```
+
+Gateway for rednet: 172.19.0.1
+
+4. What is the network address for the running container c1 and c2? ***(1 mark)*** 
+
+<br>
+Bluenet (docker inspect c1):
+
+```bash
+@AimanZaharin ➜ /workspaces/OSProject/webpage (main) $ docker inspect c1
+...
+"NetworkSettings": {
+"bluenet": {
+"IPAdress": "172.18.0.2"
+}}
+...
+```
+
+Bluenet Network Address: 172.18.0.2
+
+<br>
+Rednet (docker inspect c2):
+
+```bash
+@Alanilla ➜ /workspaces/OSProject/webpage (main) $ docker inspect c2
+...
+"NetworkSettings": {
+"rednet": {
+"IPAdress": "172.19.0.2"
+}}
+...
+```
+
+Rednet Network Address: 172.19.0.2
+
+5. Using the command ```docker exec c1 ping c2```, which basically tries to do a ping from container c1 to c2. Are you able to ping? Show your output . ***(1 mark)*** 
+```bash
+@AimanZaharin ➜ /workspaces/OSProject (main) $ docker exec c1 ping c2
+ping: bad address 'c2'
+```
 
 ## Bridging two SUB Networks
 1. Let's try this again by creating a network to bridge the two containers in the two subnetworks
@@ -715,8 +851,27 @@ docker exec c1 ping c2
 ```
 ***Questions:***
 
-1. Are you able to ping? Show your output . ***(1 mark)*** __Fill answer here__.
-2. What is different from the previous ping in the section above? ***(1 mark)*** __Fill answer here__.
+1. Are you able to ping? Show your output . ***(1 mark)*** 
+```bash
+@AimanZaharin ➜ /workspaces/OSProject (main) $ docker network create bridgenet
+867555ea2c3e971a61527c35dd202e62195c17ed3ef7e869582f50a00698655a
+@AimanZaharin ➜ /workspaces/OSProject (main) $ docker network connect bridgenet c1
+@AimanZaharin ➜ /workspaces/OSProject (main) $ docker network connect bridgenet c2
+@AimanZaharin ➜ /workspaces/OSProject (main) $ docker exec c1 ping c2
+PING c2 (172.20.0.3): 56 data bytes
+64 bytes from 172.20.0.3: seq=0 ttl=64 time=0.126 ms
+64 bytes from 172.20.0.3: seq=1 ttl=64 time=0.076 ms
+64 bytes from 172.20.0.3: seq=2 ttl=64 time=0.067 ms
+64 bytes from 172.20.0.3: seq=3 ttl=64 time=0.083 ms
+64 bytes from 172.20.0.3: seq=4 ttl=64 time=0.116 ms
+64 bytes from 172.20.0.3: seq=5 ttl=64 time=0.067 ms
+^C
+```
+
+2. What is different from the previous ping in the section above? ***(1 mark)***
+<br> 
+__The previous ping failed because the containers were on seperate subnetworks being bluenet and rednet.__
+__After bridging, the networks have a route to communicat for a successful ping.__
 
 ## Intermediate Level (10 marks bonus)
 
