@@ -870,8 +870,8 @@ PING c2 (172.20.0.3): 56 data bytes
 
 2. What is different from the previous ping in the section above? ***(1 mark)***
 <br> 
-__The previous ping failed because the containers were on seperate subnetworks being bluenet and rednet.__
-__After bridging, the networks have a route to communicat for a successful ping.__
+The previous ping failed because the containers were on seperate subnetworks being bluenet and rednet.
+After bridging, the networks have a route to communicat for a successful ping.
 
 ## Intermediate Level (10 marks bonus)
 
