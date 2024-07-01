@@ -633,7 +633,7 @@ Use "fg" to return to nano.
 ```
 
 Image: <br>
- <img src="./images/EditingHTMLfile.png" width="70%">
+ <img src="./images/EditingHTMLfile.png">
 
 3. Then, run the apache webserver and mount the webpage directory to it. Hint:
 ```bash
@@ -666,14 +666,14 @@ Status: Downloaded newer image for httpd:latest
 5. You can also see the Port in the **PORTS** tab, next to the terminal tab.
 
 Image: <br>
- <img src="./images/PortsTab.png" width="70%">
+ <img src="./images/PortsTab.png">
 
 6. You can then access your website by adding an index.html towards the end of your url link, like the one below. 
 
  <img src="./images/helloworldweb.png" width="70%">
 
 Image: <br>
- <img src="./images/HTMLfile.png" width="70%">
+ <img src="./images/HTMLfile.png">
 
 
 ***Questions:***
