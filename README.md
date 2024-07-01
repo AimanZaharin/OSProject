@@ -555,8 +555,11 @@ Answer: After stopping and deleting the Docker funny_jones container, the hellow
 
 ***Questions:***
 
-1. Are files in the container persistent. Why not?. ***(1 mark)*** __Fill answer here__.
-2. Can we run two, or three instances of debian linux? . ***(1 mark)*** __Fill answer here__.
+1. Are files in the container persistent. Why not?. ***(1 mark)*** <br>
+__Docker containers are designed to be temporary, so any files created or changed inside them are usually deleted when the container stops or is removed. When a container is deleted, Docker also removes its filesystem, including any files created or modified during its runtime.__
+
+2. Can we run two, or three instances of debian linux? . ***(1 mark)*** <br>
+__Yes, we can run multiple Debian Linux containers simultaneously on a Docker host. Each container operates independently, isolating its processes and files from others and the host system. As long as our Docker host has enough resources (CPU, memory, disk space), we can run several Debian or other Linux distribution containers concurrently. Each container instance has its own environment, network setup, and filesystem, ensuring isolation and compatibility across various setups.__
 
 ## Running your own container with persistent storage
 
