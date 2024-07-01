@@ -1014,10 +1014,82 @@ You have now set up a Node.js application in a Docker container on nodejsnet net
 
 ***Questions:***
 
-1. What is the output of step 5 above, explain the error? ***(1 mark)*** __Fill answer here__.
+1. What is the output of step 5 above, explain the error? ***(1 mark)*** 
+```bash
+@Alanilla ➜ /workspaces/OSProject/nodejs-app (main) $ curl http://localhost:3000/random
+Server Error@Alanilla ➜ /workspaces/OSProject/nodejs-app (main) $
+```
+Explanation: <br>
+This error occurs because in the index.js, the 'Define a route' section, the app will get a random query from the table in the SQL Database, however, if it does not, it will return a Server Error as follows.
+
+
 2. Show the instruction needed to make this work. ***(1 mark)*** __Fill answer here__.
 
+STEP 1: To make this work, we need to ensure the mytable created and populated in the MySQL database. As shown in Step 6.
 
+```bash
+Server Error@Alanilla ➜ /workspaces/OSProject/nodejs-app (main) $ docker exec -it mysql-container bash
+bash-5.1# mysql -u root -prootpassword
+
+mysql> SHOW DATABASES;
++--------------------+
+| Database           |
++--------------------+
+| information_schema |
+| mydatabase         |
+| mysql              |
+| performance_schema |
+| sys                |
++--------------------+
+5 rows in set (0.00 sec)
+
+mysql> USE mysql
+Reading table information for completion of table and column names
+You can turn off this feature to get a quicker startup with -A
+
+Database changed
+mysql> CREATE TABLE mytable (
+    ->   id INT AUTO_INCREMENT PRIMARY KEY,
+    ->   name VARCHAR(255) NOT NULL,
+    ->   value VARCHAR(255) NOT NULL
+    -> );
+Query OK, 0 rows affected (0.10 sec)
+
+mysql> INSERT INTO mytable (name, value) VALUES ('example1', 'value1'), ('example2', 'value2'), ('example3', 'value3');
+Query OK, 3 rows affected (0.02 sec)
+Records: 3  Duplicates: 0  Warnings: 0
+```
+
+STEP 2: We then need to bridge between the mysqlnet container and the nodejs container.
+
+```bash
+@Alanilla ➜ /workspaces/OSProject/nodejs-app (main) $ docker network create bridgenet
+0ce93a499a7b6e3125c0cb216582afe77d497f84c3157fb16ee37237756afcca
+@Alanilla ➜ /workspaces/OSProject/nodejs-app (main) $ docker network connect bridgenet mysql-container
+@Alanilla ➜ /workspaces/OSProject/nodejs-app (main) $ docker network connect bridgenet nodejs-container
+```
+
+STEP 3: We then ping between the container to check whether they are connected with each other.
+
+```bash
+@Alanilla ➜ /workspaces/OSProject/nodejs-app (main) $ docker exec -it nodejs-container ping mysql-container
+PING mysql-container (172.20.0.4) 56(84) bytes of data.
+64 bytes from mysql-container.bridgenet (172.20.0.4): icmp_seq=1 ttl=64 time=0.109 ms
+64 bytes from mysql-container.bridgenet (172.20.0.4): icmp_seq=2 ttl=64 time=0.064 ms
+64 bytes from mysql-container.bridgenet (172.20.0.4): icmp_seq=3 ttl=64 time=0.055 ms
+64 bytes from mysql-container.bridgenet (172.20.0.4): icmp_seq=4 ttl=64 time=0.068 ms
+64 bytes from mysql-container.bridgenet (172.20.0.4): icmp_seq=5 ttl=64 time=0.059 ms
+^C
+--- mysql-container ping statistics ---
+5 packets transmitted, 5 received, 0% packet loss, time 81ms
+rtt min/avg/max/mdev = 0.055/0.071/0.109/0.019 ms
+```
+
+STEP 4: After connecting, we can safely retry to curl the website
+
+```bash
+@Alanilla ➜ /workspaces/OSProject/nodejs-app (main) $ curl http://localhost:3000/random
+```
 
 ## What to submit
 
