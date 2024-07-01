@@ -752,13 +752,13 @@ f9aa33b006d73621baf78e45a1d3aea6e6cc782f5c6b2c32f268c965f56ed2ee
 
 ***Questions:***
 
-1. Describe what is busybox and what is command switch **--name** is for? . ***(2 mark)*** <br>
+1. Describe what is busybox and what is command switch **--name** is for? . ***(2 mark)*** 
+
 Busybox: <br>
 Busybox is a software suite that combines many Unix utilities into one executable file. It's popular in embedded Linux systems because it's small and simple. In Docker, it's often used for lightweight containers performing simple tasks.
 <br>
 Command switch --name: <br>
 The --name switch in Docker assigns a specific name to a container, making it easier to reference the container later instead of using the automatically generated ID.
-<br>
 
 2. Explore the network using the command ```docker network ls```, show the output of your terminal. ***(1 mark)***
 ```bash
