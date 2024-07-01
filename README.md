@@ -25,9 +25,10 @@ Team Mates:
 
 ***Questions:***
 
-1. What is the link of the fork OSProject in your repository. ***(1 mark)***
+1. What is the link of the fork OSProject in your repository. ***(1 mark)*** <br>
    __https://github.com/AimanZaharin/OSProject/tree/main__
-3. How many files and folders are in this repository. ***(1 mark)*** <br>
+
+2. How many files and folders are in this repository. ***(1 mark)*** <br>
    __There is one folder called the images folder, where it contains all the images that was used in this README.md file. Other than that, there is also one file called the README.md file. This file contains the instructions and description of this OSProject.__
 
 
@@ -62,9 +63,11 @@ Team Mates:
 
 1. What is default OS used to run the virtual environment for codespaces. ***(1 mark)*** <br>
 __The default OS used to run the virtual environment for GitHub Codespaces is Ubuntu.__
+
 2. What are the two options of ram, disk and vcpu configuration you can have in running codespaces . ***(1 mark)*** 
     1. Option 1: 2 cores, 4 GB RAM, 32 GB disk
     2. Option 2: 4 cores, 8 GB RAM, 64 GB disk
+
 3. Why must we commit and sync our current work on source control? ***(1 mark)*** <br>
 __Our current work will be synchronised and committed on source control, guaranteeing that every change is backed up and preserved in a remote repository. This facilitates group collaboration, version control to monitor changes over time, and the option to go back to earlier iterations when necessary. In the event of a local system failure, it also avoids work loss.__
 
