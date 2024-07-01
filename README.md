@@ -361,13 +361,25 @@ MiB Swap:      0.0 total,      0.0 free,      0.0 used.   6030.3 avail Mem
 Linux codespaces-705579 6.5.0-1022-azure #23~22.04.1-Ubuntu SMP Thu May  9 17:59:24 UTC 2024 x86_64 x86_64 x86_64 GNU/Linux
 ```
 
-11. What is the available free memory in the system. ***(1 mark)*** __Fill answer here__.
-12. What is the available disk space mounted on /workspace. ***(1 mark)*** __Fill answer here__.
-13. Name the version and hardware architecture of the linux Virtual environment. ***(1 mark)*** __Fill answer here__.
-14. What is the difference between **ls** vs **ls -asl**. ***(1 mark)*** __Fill answer here__.
-15. What is the TLB size of the Virtual CPU. ***(1 mark)*** __Fill answer here__.
-16. What is the CPU speed of the Virtual CPU. ***(1 mark)*** __Fill answer here__.
-17. What is the top running process that consumes the most CPU cycles. ***(1 mark)*** __Fill answer here__.
+11. What is the available free memory in the system. ***(1 mark)*** <br>
+__The available free memory in the system is 5.9 GiB.__
+
+12. What is the available disk space mounted on /workspace. ***(1 mark)*** <br>
+__The available disk space mounted on /workspaces is 20,772,088 KB.__
+
+13. Name the version and hardware architecture of the linux Virtual environment. ***(1 mark)*** <br>
+__The version and hardware architecture of the Linux Virtual environment are Linux 6.5.0-1022-azure x86_64.__
+
+14. What is the difference between **ls** vs **ls -asl**. ***(1 mark)*** <br>
+__'ls' lists the names of files and directories in the current directory, while 'ls -asl' provides a detailed list including file sizes, permissions, and other metadata, displayed in a long format with hidden files.__
+
+15. What is the TLB size of the Virtual CPU. ***(1 mark)*** <br>
+__The TLB size of the Virtual CPU is 2560 4K pages.__
+
+16. What is the CPU speed of the Virtual CPU. ***(1 mark)*** <br>
+__The CPU speed of the Virtual CPU is 2549.548 MHz.__
+17. What is the top running process that consumes the most CPU cycles. ***(1 mark)*** <br>
+__The top running process that consumes the most CPU cycles is node with a process ID of 2131, using 1.0% of the CPU.__
 
 ## Running your own container instance.
 
